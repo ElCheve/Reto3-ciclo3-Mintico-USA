@@ -17,9 +17,9 @@ public class Medico {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "specialtyId")
     @JsonIgnoreProperties("medicos")
-    private Category category;
+    private Specialty specialty;
 
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "medico")
@@ -31,6 +31,7 @@ public class Medico {
     public List<Reservation> reservations;
 
     //setters and getters
+
 
     public Integer getId() {
         return id;
@@ -72,12 +73,12 @@ public class Medico {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
+    public Specialty getSpecialty() {
+        return this.specialty;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 
     public List<Message> getMessages() {

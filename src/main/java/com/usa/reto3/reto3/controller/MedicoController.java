@@ -2,7 +2,7 @@ package com.usa.reto3.reto3.controller;
 
 
 import com.usa.reto3.reto3.entities.Medico;
-import com.usa.reto3.reto3.service.ComputerService;
+import com.usa.reto3.reto3.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,33 +16,33 @@ import java.util.Optional;
 
 public class MedicoController {
     @Autowired
-    private ComputerService computerService;
+    private MedicoService medicoService;
     @GetMapping("/all")
-    public List<Medico> getComputer(){
-        return computerService.getAll();
+    public List<Medico> getMedico(){
+        return medicoService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Medico> getComputer(@PathVariable("id") int computerId) {
-        return computerService.getComputer(computerId);
+    public Optional<Medico> getMedico(@PathVariable("id") int medicoId) {
+        return medicoService.getMedico(medicoId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Medico save(@RequestBody Medico medico) {
-        return computerService.save(medico);
+        return medicoService.save(medico);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Medico update(@RequestBody Medico medico) {
-        return computerService.update(medico);
+        return medicoService.update(medico);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id){
-        return computerService.deleteComputer(id);
+        return medicoService.deleteMedico(id);
     }
 
 

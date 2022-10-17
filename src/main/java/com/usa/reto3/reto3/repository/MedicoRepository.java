@@ -16,7 +16,7 @@ public class MedicoRepository {
     public List<Medico> getAll(){
         return (List<Medico>) medicoCrudRepository.findAll();
     }
-    public Optional<Medico> getComputer(int id){
+    public Optional<Medico> getMedico(int id){
         return medicoCrudRepository.findById(id);
     }
     public Medico save(Medico medico){

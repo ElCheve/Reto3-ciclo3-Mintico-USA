@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "specialty")
+public class Specialty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -15,11 +15,12 @@ public class Category {
     private String name;
     private String description;
 
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
-    @JsonIgnoreProperties("category")
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="specialty")
+    @JsonIgnoreProperties("specialty")
     private List<Medico> medicos;
 
     //setters y getters
+
 
     public Integer getId() {
         return id;

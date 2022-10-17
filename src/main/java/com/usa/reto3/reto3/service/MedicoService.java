@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ComputerService {
+public class MedicoService {
     @Autowired
     private MedicoRepository medicoRepository;
 
@@ -18,15 +18,15 @@ public class ComputerService {
         return medicoRepository.getAll();
     }
 
-    public Optional<Medico> getComputer(int id){
-        return medicoRepository.getComputer(id);
+    public Optional<Medico> getMedico(int id){
+        return medicoRepository.getMedico(id);
     }
 
     public Medico save(Medico medico){
         if(medico.getId() == null){
             return medicoRepository.save(medico);
         }else{
-            Optional<Medico> e = medicoRepository.getComputer(medico.getId());
+            Optional<Medico> e = medicoRepository.getMedico(medico.getId());
             if(!e.isPresent()){
                 return medicoRepository.save(medico);
             }else{
@@ -36,7 +36,7 @@ public class ComputerService {
     }
     public Medico update(Medico medico){
         if(medico.getId() != null){
-            Optional<Medico> e = medicoRepository.getComputer(medico.getId());
+            Optional<Medico> e = medicoRepository.getMedico(medico.getId());
             if(e.isPresent()){
                 if(medico.getName() != null) {
                     e.get().setName(medico.getName());
@@ -50,8 +50,8 @@ public class ComputerService {
                 if(medico.getDescription() != null) {
                     e.get().setDescription(medico.getDescription());
                 }
-                if(medico.getCategory() != null) {
-                    e.get().setCategory(medico.getCategory());
+                if(medico.getSpecialty() != null) {
+                    e.get().setSpecialty(medico.getSpecialty());
                 }
                 medicoRepository.save(e.get());
                 return e.get();
@@ -63,9 +63,9 @@ public class ComputerService {
         }
     }
 
-    public boolean deleteComputer (int id){
-        Boolean d = getComputer(id).map(computer -> {
-            medicoRepository.delete(computer);
+    public boolean deleteMedico (int id){
+        Boolean d = getMedico(id).map(medico -> {
+            medicoRepository.delete(medico);
             return true;
         }).orElse(false);
         return d;
